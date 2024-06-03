@@ -6,9 +6,12 @@ import New_Blog_Card from "../_components/New_Blog_Card";
 import Blog_Card from "../_components/Blog_Card";
 import { FaPlus } from "react-icons/fa";
 import Header from "../_components/Header";
+import { HiUserGroup } from "react-icons/hi2";
+import Search from "../_components/Search";
+import { PiNotePencilDuotone } from "react-icons/pi";
 
 function blog() {
-  const [activeTab, setActiveTab] = useState("all");
+  const [activeTab, setActiveTab] = useState("add");
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -17,10 +20,13 @@ function blog() {
   return (
     <>
       <Header />
-      <div className="p-10 md:px-28 md:py-20">
-        <div className="mb-10 text-center md:flex justify-center gap-12 text-md font-bold">
+      <div className="bg-custom-gradient">
+        <div className="pt-10 pb-0">
+          <Search />
+        </div>
+        <div className="my-10 px-10 text-center md:flex items-center text-md font-bold w-full md:w-4/5 lg:w-3/5 m-auto">
           <button
-            className="border border-main px-12 py-2 rounded-2xl text-main hover:bg-main focus:text-white focus:bg-main hover:text-white transition-all"
+            className="border border-main px-10 py-2 rounded-2xl text-main hover:bg-main focus:text-white focus:bg-main hover:text-white transition-all"
             onClick={() => handleTabClick("add")}
           >
             <FaPlus className="inline me-4" />
@@ -42,7 +48,7 @@ function blog() {
           </button>
         </div>
 
-        <div className="content">
+        <div className="content p-10 md:px-28 md:py-4">
           {activeTab === "add" && <AddBlog />}
           {activeTab === "all" && <AllBlogs />}
           {activeTab === "myBlogs" && <MyBlogs />}
@@ -54,8 +60,13 @@ function blog() {
 
 function AddBlog() {
   return (
-    <>
-      <h2 className="text-2xl text-header font-extrabold">أكتب مدونة </h2>
+    <div className="lg:mx-10">
+      <h2 className="text-2xl text-header font-extrabold flex items-center gap-3">
+        <span className="bg-amber-900 rounded-full p-2">
+          <PiNotePencilDuotone className="text-white" />
+        </span>
+        أكتب مدونة
+      </h2>
 
       <form className="p-8 bg-white rounded-3xl my-10 shadow-slate-300 shadow-md m-auto">
         <div className="mb-10">
@@ -87,20 +98,28 @@ function AddBlog() {
           </button>
         </div>
       </form>
-    </>
+    </div>
   );
 }
 
 function AllBlogs() {
   return (
-    <div className="mx-3 lg:mx-24">
-      <h2 className="text-xl font-bold text-amber-900 mb-10">
+    <div className="mx-3 lg:mx-20">
+      <h2 className="text-xl font-bold text-amber-900 mb-10 flex items-center gap-3">
+        <span className="bg-amber-900 rounded-full p-2">
+          <HiUserGroup className="text-white" />
+        </span>
         المدونات الحديثة
       </h2>
 
       <New_Blog_Card />
 
-      <h2 className="text-xl font-bold text-amber-900 my-10">جميع المدونات</h2>
+      <h2 className="text-xl font-bold text-amber-900 my-10 flex items-center gap-3">
+        <span className="bg-amber-900 rounded-full p-2">
+          <HiUserGroup className="text-white" />
+        </span>
+        جميع المدونات
+      </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-[95%] m-auto md:w-full">
         <Blog_Card />

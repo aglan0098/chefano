@@ -7,7 +7,7 @@ function Who() {
     <>
       <Header />
       <div
-        className="md:flex items-center justify-between p-10 md:p-28 bg-contain bg-top"
+        className="md:flex items-center justify-between p-10 md:p-28 bg-cover bg-top"
         style={{ backgroundImage: "url(/images/who/background.png)" }}
       >
         <div className="md:w-[60%] mb-10 md:mb-0">

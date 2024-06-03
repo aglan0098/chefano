@@ -1,6 +1,21 @@
-.details
-{
-    background-color: rgba(26, 26, 26, 0.7);
-    background: transparent;
-    
+/* Define the backdrop-blur-custom alternative */
+.backdrop-blur-custom {
+  position: relative;
+  background-color: rgba(171, 125, 88, 0.5);
+}
+
+/* Pseudo-element for the semi-transparent overlay */
+.backdrop-blur-custom::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(96, 49, 10, 0.475);
+  z-index: -1;
+}
+
+.backdrop-blur-custom-card {
+  background-color: rgba(90, 45, 8, 0.751);
 }

@@ -1,12 +1,18 @@
 import React from "react";
 import Header from "../_components/Header";
+import { LuMonitorPlay } from "react-icons/lu";
 
 function sell() {
   return (
     <>
       <Header />
-      <div className="p-5 md:p-28 bg-slate-300">
-        <h2 className="text-2xl font-extrabold text-header">بيع دوراتك معنا</h2>
+      <div className="p-5 md:p-28 bg-custom-gradient">
+        <h2 className="text-2xl font-extrabold text-header flex items-center gap-3">
+          <span className="text-3xl">
+            <LuMonitorPlay />
+          </span>
+          بيع دوراتك معنا
+        </h2>
 
         <form className="p-8 bg-white rounded-3xl my-10 shadow-md m-auto">
           <div className="mb-10">

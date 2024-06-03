@@ -15,7 +15,7 @@ function page() {
   return (
     <>
       <Header />
-      <div className="p-10 md:p-20 bg-slate-100">
+      <div className="p-8 md:p-20">
         <div className="tabs flex justify-center gap-12 text-md font-bold mb-14">
           <button
             className={activeTab === "profile" ? "" : "text-gray-400"}

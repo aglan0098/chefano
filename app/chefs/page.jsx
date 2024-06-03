@@ -16,12 +16,12 @@ function Chefs() {
   return (
     <>
       <Header />
-      <div className="bg-slate-100 p-10">
-        <div className="mb-10">
+      <div>
+        <div className="my-10">
           <Search />
         </div>
 
-        <div className="tabs mb-10 text-center md:flex justify-center gap-12 text-md font-bold">
+        <div className="my-10 px-10 text-center md:flex items-center text-md font-bold w-full md:w-4/5 lg:w-3/5 m-auto">
           <button
             className="border border-main px-12 py-2 rounded-2xl text-main hover:bg-main focus:text-white focus:bg-main hover:text-white transition-all"
             onClick={() => handleTabClick("add")}

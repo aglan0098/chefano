@@ -15,8 +15,8 @@ function Header() {
   };
 
   return (
-    <header className="bg-[#452E1B] text-white absolute w-full bg-opacity-50 backdrop-blur-xl z-10">
-      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+    <header className="bg-[#452E1B] text-white absolute w-full bg-opacity-50 backdrop-blur-custom z-10">
+      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 relative z-20 bg-transparent">
         <div className="flex h-16 items-center justify-between">
           <div className="md:flex md:items-center md:gap-12">
             <Link href="/">
@@ -108,7 +108,7 @@ function Header() {
       </div>
 
       {isMenuOpen && (
-        <div className="md:hidden backdrop-blur-xl text-white">
+        <div className="md:hidden backdrop-blur-xl text-white relative z-20">
           <nav aria-label="Global">
             <ul className="flex flex-col items-center gap-6 text-sm p-4">
               <li>

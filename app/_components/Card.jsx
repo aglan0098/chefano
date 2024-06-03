@@ -10,7 +10,7 @@ function Card() {
       className="relative rounded-3xl my-4 md:my-0 h-60 md:w-full bg-cover"
       style={{ backgroundImage: "url(/images/card_pic.jpeg)" }}
     >
-      <div className="absolute bottom-0 w-full p-4 md:flex justify-between items-center bg-[#707070cd] backdrop-blur-md rounded-3xl">
+      <div className="absolute bottom-0 w-full p-4 md:flex justify-between items-center bg-[#707070cd] backdrop-blur-custom-card rounded-3xl">
         <div>
           <h2 className="text-xl text-white">كيك بالبرتقال</h2>
           <div className="text-md text-orange-200 flex my-2 items-center">
@@ -24,7 +24,7 @@ function Card() {
         </div>
 
         <div>
-          <div className="flex gap-3 justify-center text-[#311A08]">
+          <div className="flex gap-3 justify-center text-[#ffe8d6]">
             <span className="flex items-center gap-3">
               مبتدئ
               <MdInsertChart className="text-xl" />
