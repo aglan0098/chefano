@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "../_components/Header";
 
 function page() {
   const text = `
@@ -31,14 +30,11 @@ function page() {
  `;
 
   return (
-    <>
-      <Header />
-      <div className="p-10 md:p-20">
-        <h2 className="mb-5 text-2xl text-header font-bold">سياسات الموقع:</h2>
+    <div className="bg-custom-gradient p-10 md:p-20">
+      <h2 className="mb-5 text-2xl text-header font-bold">سياسات الموقع:</h2>
 
-        <p className="whitespace-pre-wrap leading-7 text-lg">{text}</p>
-      </div>
-    </>
+      <p className="whitespace-pre-wrap leading-7 text-lg">{text}</p>
+    </div>
   );
 }
 

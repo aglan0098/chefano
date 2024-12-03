@@ -12,6 +12,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Navigation } from "swiper/modules";
 import "swiper/css";
 
+import { useFeedbackContext } from "@/app/_contexts/FeedbackContext";
+import Loading from "../Loading";
+
 function Visitors() {
   const swiperRef = useRef(null);
 
@@ -22,6 +25,12 @@ function Visitors() {
     setIsBeginning(swiper.isBeginning);
     setIsEnd(swiper.isEnd);
   };
+
+  const { feedbacks, loading } = useFeedbackContext();
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="p-10 px-20 bg-slate-100">
@@ -64,24 +73,15 @@ function Visitors() {
           className="mySwiper"
           modules={[Navigation, A11y]}
         >
-          <SwiperSlide>
-            <Review_Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Review_Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Review_Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Review_Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Review_Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Review_Card />
-          </SwiperSlide>
+          {feedbacks.map((feedback) => (
+            <SwiperSlide key={feedback.id}>
+              <Review_Card
+                id={feedback?.id}
+                content={feedback.attributes.content}
+                user={feedback.attributes.user}
+              />
+            </SwiperSlide>
+          ))}
         </Swiper>
 
         {!isBeginning && (

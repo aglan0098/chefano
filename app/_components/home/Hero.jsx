@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 function Hero() {
   return (
@@ -29,9 +30,11 @@ function Hero() {
             تجربتك في المطبخ إلى مغامرة لا تُنسى
           </p>
 
-          <button className="bg-[#683220] text-white py-2 px-6 sm:px-9 rounded-3xl my-3 sm:my-5 text-[1rem] sm:text-[1.1rem]">
-            انضم إلينا
-          </button>
+          <Link href="/courses">
+            <button className="bg-[#683220] text-white py-2 px-6 sm:px-9 rounded-3xl my-3 sm:my-5 text-[1rem] sm:text-[1.1rem]">
+              انضم إلينا
+            </button>
+          </Link>
 
           <p className="text-[1rem] sm:text-[1.1rem]">
             ودعنا نشاركك أسرار الطهي الإحترافية ونرافقك في رحلتك لتحضير أطباق

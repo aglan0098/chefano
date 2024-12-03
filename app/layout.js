@@ -1,9 +1,15 @@
-import { Almarai } from "next/font/google";
 import "./globals.css";
 import "./styles.css";
+import Header from "./_components/Header";
 import Footer from "./_components/Footer";
 
+import { Almarai } from "next/font/google";
 const almarai = Almarai({ weight: ['300', '400', '700', '800'], subsets: ["arabic"] });
+
+import { ClerkProvider } from '@clerk/nextjs'
+import { BlogProvider } from "./_contexts/BlogContext";
+import { CourseProvider } from "./_contexts/CourseContext";
+import { FeedbackProvider } from "./_contexts/FeedbackContext";
 
 export const metadata = {
   title: "CHEFANO",
@@ -12,11 +18,20 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" dir="rtl">
-      <body className={almarai.className}>
-        {children}
-        <Footer />
-      </body>
-    </html>
+    <ClerkProvider frontendApi={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
+      <html lang="en" dir="rtl">
+        <body className={almarai.className}>
+          <Header />
+          <BlogProvider>
+            <CourseProvider>
+              <FeedbackProvider>
+                {children}
+              </FeedbackProvider>
+            </CourseProvider>
+          </BlogProvider>
+          <Footer />
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

@@ -18,10 +18,6 @@
   }
 }
 
-/* body {
-  color: var(--main-color);
-} */
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -34,5 +30,9 @@
   .no-scrollbar {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
+  }
+
+  .overlay {
+    @apply fixed top-0 right-0 left-0 bottom-0 flex flex-col justify-center items-center bg-black bg-opacity-70 z-50;
   }
 }

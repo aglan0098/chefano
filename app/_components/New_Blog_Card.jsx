@@ -1,34 +1,29 @@
 import React from "react";
-import { FaHeart } from "react-icons/fa";
-import { IoIosShareAlt } from "react-icons/io";
+import { useRouter } from "next/navigation";
 
-function New_Blog_Card() {
+function New_Blog_Card({ lastBlog }) {
+  const router = useRouter();
+
   return (
     <div className="p-5 md:p-10 rounded-3xl bg-white shadow-md m-auto">
-      <img src="/images/home_banner.png" alt="" className="rounded-3xl" />
+      <img
+        src={lastBlog?.attributes?.image?.data?.attributes?.url}
+        alt=""
+        className="rounded-3xl md:h-[400px] object-cover w-full"
+      />
 
       <div className="text-center my-5">
-        <h2 className="font-bold text-xl mb-4">كيك البرتقال الفريد </h2>
+        <h2 className="font-bold text-xl mb-4">{lastBlog?.attributes.title}</h2>
 
-        <p className="lg:px-20 text-lg">
-          هذا النص سوف يتم تغييرة عندما يتوفر المحتوى هذا النص سوف يتم تغييرة
-          عندما يتوفر المحتوى هذا النص سوف يتم تغييرة عندما يتوفر المحتوى هذا
-          النص سوف يتم تغييرة عندما يتوفر المحتوى هذا النص سوف يتم تغييرة عندما
-          يتوفر المحتوى هذا النص سوف يتم تغييرة عندما يتوفر المحتوى
+        <p className="lg:px-20 text-lg line-clamp-2">
+          {lastBlog?.attributes.content}
         </p>
       </div>
       <div className="flex gap-3 items-center justify-end">
-        <button className="text-white bg-[#FFA800] p-3 rounded-[50%] h-10 w-10 flex items-center justify-center">
-          <span>
-            <IoIosShareAlt className="text-2xl" />
-          </span>
-        </button>
-        <button className="text-white bg-[#FFA800] p-3 rounded-[50%] h-10 w-10 flex items-center justify-center">
-          <span>
-            <FaHeart className="text-lg" />
-          </span>
-        </button>
-        <button className="text-white bg-[#FFA800] p-2 px-4 rounded-lg">
+        <button
+          className="text-white bg-[#FFA800] p-2 px-4 rounded-lg"
+          onClick={() => router.push(`/blog/${lastBlog?.id}`)}
+        >
           إقرأ المزيد ...
         </button>
       </div>

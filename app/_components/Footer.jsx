@@ -36,43 +36,34 @@ function Footer() {
 
           <ul className="font-light my-5">
             <li>
-              <Link href="/chefs">مجتمع الطباخين</Link>
-            </li>
-            <li className="my-2">
               <Link href="/blog">المدونة</Link>
             </li>
 
-            <li>
+            <li className="my-2">
               <Link href="/sell-your-course">بيع دوراتك معنا</Link>
+            </li>
+            <li>
+              <Link href="/feedback">رأيك يهمنا</Link>
             </li>
           </ul>
         </div>
 
         <div className="social_icons text-lg mt-10 md:mt-0">
           <div className="flex justify-center gap-2 mb-4">
-            <div className="rounded-md bg-white p-1">
-              <RiTwitterXFill className="text-[#351f06da] fill-current" />
-            </div>
-            <div className="rounded-md bg-white p-1">
-              <FaSnapchatGhost className="text-[#351f06da] fill-current" />
-            </div>
-            <div className="bg-white rounded-md p-1">
-              <FaTelegramPlane className="text-[#351f06da] fill-current" />
-            </div>
-            <div className="bg-white rounded-md p-1">
+            <Link
+              href="https://www.tiktok.com/@chefa_no?_t=8qoZ6nVRwTh&_r=1"
+              className="bg-white rounded-md p-1"
+              target="_blank"
+            >
               <FaTiktok className="text-[#351f06da] fill-current" />
-            </div>
-          </div>
-          <div className="flex justify-center gap-2">
-            <div className="bg-white rounded-md p-1">
-              <FaLinkedinIn className="text-[#351f06da] fill-current" />
-            </div>
-            <div className="bg-white rounded-md p-1">
+            </Link>
+            <Link
+              href="https://www.instagram.com/chefa_no/profilecard/?igsh=Z3Z1amFwMWNveDNx"
+              className="bg-white rounded-md p-1"
+              target="_blank"
+            >
               <RiInstagramFill className="text-[#351f06da] fill-current" />
-            </div>
-            <div className="bg-white rounded-md p-1">
-              <FaPlay className="text-[#351f06da] fill-current" />
-            </div>
+            </Link>
           </div>
         </div>
       </div>

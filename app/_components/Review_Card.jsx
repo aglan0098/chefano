@@ -1,24 +1,24 @@
 import React from "react";
-import Image from "next/image";
 
-function Review_Card() {
+function Review_Card({ content, user }) {
   return (
-    <div className="card border border-amber-400 rounded-3xl shadow-md p-8 my-4 md:my-0">
+    <div className="card border border-amber-400 rounded-3xl shadow-md p-7 my-4 md:my-0">
       <div className="text-center lg:text-right lg:flex gap-5 items-center">
-        <Image
-          className="m-auto lg:m-0"
-          src="/images/avatar.png"
+        <img
+          className="m-auto lg:m-0 rounded-full h-20 w-20"
+          src={
+            user.data.attributes.profile_pic.data?.attributes.url ||
+            "/images/avatar.png"
+          }
           alt="profile_picture"
-          width={85}
-          height={85}
         />
         <div className="name">
-          <p className="font-extrabold">خالد الصعب</p>
-          <p className="text-gray-500">Khalied.Alsaab</p>
+          <p className="font-extrabold">{user.data.attributes.fullNameAr}</p>
+          <p className="text-gray-500">{user.data.attributes.fullNameEn}</p>
         </div>
       </div>
       <hr className="my-4" />
-      <p>دورة الكوكيز جميلة واستفدت الكثير منها صراحة </p>
+      <p>{content}</p>
     </div>
   );
 }

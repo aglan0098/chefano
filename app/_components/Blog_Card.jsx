@@ -1,26 +1,30 @@
 import React from "react";
-import { FaHeart } from "react-icons/fa";
-import { IoIosShareAlt } from "react-icons/io";
+import { useRouter } from "next/navigation";
 
-function Blog_Card() {
+function Blog_Card({ id, image, title }) {
+  const router = useRouter();
+
+  const handleCardClick = () => {
+    router.push(`/blog/${id}`);
+  };
+
   return (
     <div className="py-8 px-3 rounded-2xl shadow-xl bg-white text-center mb-8 md:mb-0">
-      <img
-        src="images/card_pic.jpeg"
-        alt="blog_pic"
-        className="rounded-[30px] px-5"
-      />
+      <div className="w-full h-48 overflow-hidden rounded-[30px] mx-auto">
+        <img
+          src={image}
+          alt="blog_pic"
+          className="w-full h-full object-cover"
+        />
+      </div>
 
-      <h2 className=" my-8 font-bold">كيفية العمل مع فريق</h2>
+      <h2 className="my-5 font-bold">{title}</h2>
 
-      <div className="flex justify-center gap-3 items-center">
-        <button className="text-white bg-[#FFA800] p-3 rounded-[50%] h-10 w-10">
-          <IoIosShareAlt />
-        </button>
-        <button className="text-white bg-[#FFA800] p-3 rounded-[50%] h-10 w-10">
-          <FaHeart />
-        </button>
-        <button className="text-white bg-[#FFA800] p-2 px-4 rounded-lg">
+      <div className="flex justify-center items-center">
+        <button
+          onClick={handleCardClick}
+          className="text-white bg-[#FFA800] p-2 px-4 rounded-lg"
+        >
           إقرأ المزيد ...
         </button>
       </div>

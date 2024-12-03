@@ -3,6 +3,7 @@
 import React, { useRef, useState } from "react";
 import Card from "../Card";
 import Search from "../Search";
+import Loading from "../Loading";
 import {
   MdOutlineArrowBackIos,
   MdOutlineArrowForwardIos,
@@ -13,7 +14,18 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Navigation } from "swiper/modules";
 import "swiper/css";
 
+import { useCourseContext } from "@/app/_contexts/CourseContext";
+
 function Courses() {
+  const { courses, loading } = useCourseContext();
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Filter courses based on the search term
+  const filteredCourses = courses.filter((course) =>
+    course.attributes.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  // Swiper
   const swiperRef_1 = useRef(null);
   const swiperRef_2 = useRef(null);
 
@@ -35,141 +47,147 @@ function Courses() {
 
   return (
     <div className="mt-12 md:mt-10 md:mb-10 lg:mt-0 px-10 md:px-20">
-      <Search />
+      <Search onSearchChange={setSearchTerm} />
 
       <h2 className="text-xl font-bold text-amber-900 mb-10 flex items-center gap-3">
         <FaPlayCircle className="text-2xl" />
         الدورات الحديثة
       </h2>
 
-      <div className="relative">
-        {!isEnd_1 && (
-          <button
-            onClick={() => swiperRef_1.current?.slideNext()}
-            className="bg-main text-white p-3 rounded-full absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 z-10 text-3xl"
-          >
-            <MdOutlineArrowBackIos />
-          </button>
-        )}
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="relative">
+          {!isEnd_1 && (
+            <button
+              onClick={() => swiperRef_1.current?.slideNext()}
+              className="bg-main text-white p-3 rounded-full absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 z-10 text-3xl"
+            >
+              <MdOutlineArrowBackIos />
+            </button>
+          )}
 
-        <Swiper
-          onSwiper={(swiper) => {
-            swiperRef_1.current = swiper;
-            setIsBeginning_1(swiper.isBeginning);
-            setIsEnd_1(swiper.isEnd);
-          }}
-          onSlideChange={handleSlideChange_1}
-          slidesPerView={1}
-          spaceBetween={10}
-          breakpoints={{
-            640: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-            },
-            1050: {
-              slidesPerView: 3,
-              spaceBetween: 20,
-            },
-          }}
-          className="mySwiper"
-          modules={[Navigation, A11y]}
-        >
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-        </Swiper>
-
-        {!isBeginning_1 && (
-          <button
-            onClick={() => swiperRef_1.current?.slidePrev()}
-            className="bg-main text-white p-3 rounded-full absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 z-10 text-3xl"
+          <Swiper
+            onSwiper={(swiper) => {
+              swiperRef_1.current = swiper;
+              setIsBeginning_1(swiper.isBeginning);
+              setIsEnd_1(swiper.isEnd);
+            }}
+            onSlideChange={handleSlideChange_1}
+            slidesPerView={1}
+            spaceBetween={10}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              1050: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+              },
+            }}
+            className="mySwiper"
+            modules={[Navigation, A11y]}
           >
-            <MdOutlineArrowForwardIos />
-          </button>
-        )}
-      </div>
+            {filteredCourses.length ? (
+              filteredCourses.map((course) => (
+                <div key={course.id}>
+                  <SwiperSlide>
+                    <Card
+                      id={course?.id}
+                      cover={course.attributes.cover.data?.attributes.url}
+                      title={course.attributes.title}
+                      duration={course.attributes.duration}
+                      level={course.attributes.level}
+                      price={course.attributes.price}
+                    />
+                  </SwiperSlide>
+                </div>
+              ))
+            ) : (
+              <h2 className="place-self-center text-xl font-bold text-main col-span-full text-center py-4">
+                لايوجد دورات
+              </h2>
+            )}
+          </Swiper>
+
+          {!isBeginning_1 && (
+            <button
+              onClick={() => swiperRef_1.current?.slidePrev()}
+              className="bg-main text-white p-3 rounded-full absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 z-10 text-3xl"
+            >
+              <MdOutlineArrowForwardIos />
+            </button>
+          )}
+        </div>
+      )}
 
       <h2 className="text-xl font-bold text-amber-900 my-5 md:my-10 flex items-center gap-3">
         <FaCheckCircle className="text-2xl" />
         الدورات الأكثر مبيعًا
       </h2>
 
-      <div className="relative">
-        {!isEnd_2 && (
-          <button
-            onClick={() => swiperRef_2.current?.slideNext()}
-            className="bg-main text-white p-3 rounded-full absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 z-10 text-3xl"
-          >
-            <MdOutlineArrowBackIos />
-          </button>
-        )}
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="relative">
+          {!isEnd_2 && (
+            <button
+              onClick={() => swiperRef_2.current?.slideNext()}
+              className="bg-main text-white p-3 rounded-full absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 z-10 text-3xl"
+            >
+              <MdOutlineArrowBackIos />
+            </button>
+          )}
 
-        <Swiper
-          onSwiper={(swiper) => {
-            swiperRef_2.current = swiper;
-            setIsBeginning_1(swiper.isBeginning);
-            setIsEnd_1(swiper.isEnd);
-          }}
-          onSlideChange={handleSlideChange_2}
-          slidesPerView={1}
-          spaceBetween={10}
-          breakpoints={{
-            640: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-            },
-            1050: {
-              slidesPerView: 3,
-              spaceBetween: 20,
-            },
-          }}
-          className="mySwiper"
-          modules={[Navigation, A11y]}
-        >
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-        </Swiper>
-
-        {!isBeginning_2 && (
-          <button
-            onClick={() => swiperRef_2.current?.slidePrev()}
-            className="bg-main text-white p-3 rounded-full absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 z-10 text-3xl"
+          <Swiper
+            onSwiper={(swiper) => {
+              swiperRef_2.current = swiper;
+              setIsBeginning_1(swiper.isBeginning);
+              setIsEnd_1(swiper.isEnd);
+            }}
+            onSlideChange={handleSlideChange_2}
+            slidesPerView={1}
+            spaceBetween={10}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              1050: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+              },
+            }}
+            className="mySwiper"
+            modules={[Navigation, A11y]}
           >
-            <MdOutlineArrowForwardIos />
-          </button>
-        )}
-      </div>
+            {courses.map((course) => (
+              <div key={course.id}>
+                <SwiperSlide>
+                  <Card
+                    id={course?.id}
+                    cover={course.attributes.cover.data?.attributes.url}
+                    title={course.attributes.title}
+                    duration={course.attributes.duration}
+                    level={course.attributes.level}
+                    price={course.attributes.price}
+                  />
+                </SwiperSlide>
+              </div>
+            ))}
+          </Swiper>
+
+          {!isBeginning_2 && (
+            <button
+              onClick={() => swiperRef_2.current?.slidePrev()}
+              className="bg-main text-white p-3 rounded-full absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 z-10 text-3xl"
+            >
+              <MdOutlineArrowForwardIos />
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 }

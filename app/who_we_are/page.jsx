@@ -1,11 +1,9 @@
 import Image from "next/image";
 import React from "react";
-import Header from "../_components/Header";
 
 function Who() {
   return (
     <>
-      <Header />
       <div
         className="md:flex items-center justify-between p-10 md:p-28 bg-cover bg-top"
         style={{ backgroundImage: "url(/images/who/background.png)" }}
